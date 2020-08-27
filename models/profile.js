@@ -1,10 +1,16 @@
 var mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+var User = require("../models/user");
 
 var profileSchema = mongoose.Schema({
-  username: { type: mongoose.Types.username, required: true, uniqe: true },
-  fname: { type: mongoose.Types.fname, required: true, uniqe: false },
-  lname: { type: mongoose.Types.lname, required: true, uniqe: false },
-  dob: { type: Date },
+  username: {
+    type: String,
+    required: true,
+    uniqe: true,
+  },
+  fname: { type: String },
+  lname: { type: String },
+  dob: { type: Date, required: false },
   personalInfo: { type: String },
 });
 var userProfile = mongoose.model("userProfile", profileSchema);

@@ -1,6 +1,7 @@
 var express = require("express");
 var passport = require("passport");
 var User = require("../../models/user");
+const { session } = require("passport");
 var ensureAuthenticated = require("../../auth/auth").ensureAuthenticated;
 
 var router = express.Router();
@@ -35,18 +36,12 @@ router.post(
 );
 
 router.get("/signup", function (req, res) {
-  console.log("Registration page");
-  res.render("home/signup");
-});
-
-router.get("/signup", function (req, res) {
   res.render("home/signup");
 });
 
 router.post(
   "/signup",
   function (req, res, next) {
-    console.log(req);
     var fname = req.body.fname;
     var lname = req.body.lname;
     var username = req.body.username;
@@ -79,5 +74,14 @@ router.post(
     failureFlash: true,
   })
 );
+
+router.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["email", "profile"],
+  })
+);
+
+router.get("/auth/google/callback", passport.authenticate("google"));
 
 module.exports = router;

@@ -1,5 +1,7 @@
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
+var GooglStrategy = require("passport-google-oauth20").Strategy;
+const keys = require("./config/keys");
 var User = require("./models/user");
 
 module.exports = function () {
@@ -55,5 +57,19 @@ module.exports = function () {
       }
     )
   );
-  console.log("local startegy executed");
+  console.log("going into google stategy");
+  passport.use(
+    new GooglStrategy(
+      {
+        clientID: keys.googleClientID,
+        clientSecret: keys.googleClientSecret,
+        callbackURL: "/auth/google/callback/",
+      },
+      (accessToken, profile, done) => {
+        console.log("access Token: " + accessToken);
+        // console.log("Refresh Token: " + refreshToken);
+        console.log("Profile: " + profile);
+      }
+    )
+  );
 };

@@ -1,0 +1,24 @@
+<%- include ("../partials/_header") -%>
+<form action="/profile/update" method="POST">
+  <h2>Edit Personal Information</h2>
+  <textarea
+    class="form-control"
+    id="exampleFormControlTextarea1"
+    rows="3"
+    name="info"
+  ></textarea>
+  <div class="form-group row">
+    <label for="example-date-input" class="col-2 col-form-label">Date</label>
+    <div class="col-10">
+      <input
+        class="form-control"
+        type="date"
+        value="2011-08-19"
+        id="example-date-input"
+      />
+    </div>
+  </div>
+  <input type="submit" class="btn btn-default navbar-btn" value="change" />
+</form>
+
+<%- include ("../partials/_footer") -%>

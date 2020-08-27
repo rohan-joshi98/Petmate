@@ -12,6 +12,7 @@ var setUpPassport = require("./setuppaassport");
 //var multer = require("multer");
 //var router = require("./routes/web");
 var app = express();
+//const keys = require("./config/keys");
 
 mongoose.connect(param.DATABASE_CONNECTION, {
   useUnifiedTopology: true,
